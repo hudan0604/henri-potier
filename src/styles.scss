@@ -1,8 +1,78 @@
 /* You can add global styles to this file, and also import other style files */
+
 .w20 {
   width: 20%;
 }
+.w50 {
+  width: 50%;
+}
+$hp-color: rgb(88, 39, 153);
 nav {
-  background: black;
+  background: $hp-color;
   color: white;
+  font-family: "hp";
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.fullPage {
+  height: 100%;
+  width: 100%;
+  margin-top: 5%;
+}
+
+.center {
+  @include center;
+}
+
+.booksDiv {
+  @include center;
+}
+
+$bookBackground: lightgrey;
+.bookStyle {
+  height: 400px;
+  width: 45%;
+  margin-right: 50px;
+  float: left;
+  margin-bottom: 20px;
+  display: flex;
+}
+@mixin h100 {
+  height: 100%;
+}
+.h100 {
+  @include h100;
+}
+
+#bookParams {
+  @include h100;
+
+  padding: 0 26px 0px 26px;
+}
+#bookSynopsis {
+  height: 73%;
+  overflow: hidden;
+  margin-bottom: 11px;
+  text-align: justify;
+  margin-top: 10px;
+  text-overflow: ellipsis;
+  background: #e8e8f378;
+}
+#bookTitle {
+  font-weight: 700;
+}
+.price {
+  text-align: left;
+}
+.cart {
+  text-align: right;
+}
+.shoppingCart {
 }
