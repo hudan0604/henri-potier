@@ -1,0 +1,45 @@
+#monPanier {
+  margin-bottom: 5%;
+}
+#bookCoverDiv {
+  width: 15%;
+}
+#bookInCart {
+  width: 90%;
+  display: flex;
+  border: 1px solid;
+  height: 140px;
+}
+#bookCoverInCart {
+  height: 100%;
+  width: 100%;
+}
+#bookTitle {
+  font-weight: 700;
+  width: 70%;
+  margin: 10px 10px;
+}
+#priceIncart {
+  width: 15%;
+  text-align: center;
+}
+.deleteIcon {
+  font-size: 23px;
+  color: #9786ad;
+}
+.h33 {
+  height: 33%;
+}
+#bookAndDeleteIcon {
+  display: flex;
+  width: 60%;
+  margin-bottom: 3%;
+}
+#emptyCart {
+  margin: 10% auto;
+  width: 24%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+  height: 20%;
+}

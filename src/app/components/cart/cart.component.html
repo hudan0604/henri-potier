@@ -1,0 +1,37 @@
+<div class="fullPage">
+  <div *ngIf="booksInCart.length === 0" id="emptyCart">
+    <h1>OOOoopss...</h1>
+    <p>Votre panier est vide !</p>
+    <p>
+      Vous n'êtes qu'à un coup de baguette<br />
+      magique d'obtenir un des livres HP !
+    </p>
+  </div>
+  <div class="cartDiv">
+    <h1 id="monPanier" *ngIf="booksInCart.length > 0">Mon panier</h1>
+    <div id="bookAndDeleteIcon" *ngFor="let book of booksInCart; index as i">
+      <div id="bookInCart">
+        <!-- book cover -->
+        <div id="bookCoverDiv">
+          <img id="bookCoverInCart" src="{{ book.cover }}" />
+        </div>
+        <!-- book title -->
+        <div id="bookTitle">
+          {{ book.title }}
+        </div>
+        <!-- Price div -->
+        <div id="priceIncart">
+          <div class="h33 center">{{ book.price }} €</div>
+        </div>
+      </div>
+      <div class="center w10">
+        <!-- delete icon -->
+        <i (click)="deleteBookFromcart(i)" class="fas fa-trash deleteIcon"></i>
+      </div>
+    </div>
+    <!-- DIV for the total price after promotions  -->
+    <div id="promotionDiv" class="center">
+      toto
+    </div>
+  </div>
+</div>

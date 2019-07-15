@@ -9,3 +9,15 @@ body {
   width: 100%;
   margin: 0;
 }
+
+#bookPriceAndCart {
+  display: flex;
+  background: #dcddec;
+  height: 15%;
+  align-items: center;
+  border: 1px solid #b5acac;
+}
+
+.homeShoppingCart {
+  color: darkslateblue;
+}

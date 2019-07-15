@@ -1,4 +1,4 @@
-import { API_ENDPOINT } from "../settings/appsettings";
+import { API_ENDPOINT } from "../../settings/appsettings";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";

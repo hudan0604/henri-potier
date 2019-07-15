@@ -19,9 +19,10 @@ import { HomeComponent } from "./components/home/home.component";
 import { HttpClientModule } from "@angular/common/http";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { NgModule } from "@angular/core";
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomeComponent],
+  declarations: [AppComponent, NavbarComponent, HomeComponent, CartComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 
-import { BooksService } from "src/services/books.service";
+import { BehaviorSubject } from "rxjs";
+import { BooksService } from "src/services/books/books.service";
+import { StorageService } from "src/services/storage/storage.service";
 
 @Component({
   selector: "app-home",
@@ -10,7 +12,19 @@ import { BooksService } from "src/services/books.service";
 export class HomeComponent implements OnInit {
   books: Object;
 
-  constructor(private booksService: BooksService) {}
+  constructor(
+    private booksService: BooksService,
+    private storageService: StorageService
+  ) {}
+
+  /*
+   **
+   *send book to storage service
+   */
+  addToCart(book): void {
+    //console.log(book);
+    this.storageService.addToCart(book);
+  }
 
   ngOnInit() {
     this.booksService.getBooks().subscribe(e => {

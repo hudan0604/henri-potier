@@ -1,10 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 
+html,
+body {
+  height: 100%;
+}
+.w10 {
+  width: 10%;
+}
 .w20 {
   width: 20%;
 }
 .w50 {
   width: 50%;
+}
+.w100 {
+  width: 100%;
+}
+.pointer {
+  cursor: pointer;
 }
 $hp-color: rgb(88, 39, 153);
 nav {
@@ -14,6 +27,7 @@ nav {
   position: fixed;
   width: 100%;
   top: 0;
+  display: flex !important;
 }
 @mixin center {
   display: flex;
@@ -24,15 +38,22 @@ nav {
 .fullPage {
   height: 100%;
   width: 100%;
-  margin-top: 5%;
 }
 
 .center {
   @include center;
 }
 
-.booksDiv {
+.cartDiv {
   @include center;
+
+  margin-top: 8%;
+}
+.booksDiv {
+  display: flex;
+  margin-top: 7%;
+  flex-direction: column;
+  align-items: center;
 }
 
 $bookBackground: lightgrey;
@@ -57,22 +78,33 @@ $bookBackground: lightgrey;
   padding: 0 26px 0px 26px;
 }
 #bookSynopsis {
-  height: 73%;
   overflow: hidden;
-  margin-bottom: 11px;
+  height: 75%;
   text-align: justify;
-  margin-top: 10px;
   text-overflow: ellipsis;
   background: #e8e8f378;
+  margin-bottom: 2%;
+  border: 1px solid #b5acac;
+  padding: 8px 15px;
 }
 #bookTitle {
   font-weight: 700;
+  height: 8%;
 }
 .price {
   text-align: left;
+  width: 50%;
+  margin-left: 5%;
+  font-size: 25px;
 }
 .cart {
   text-align: right;
+  width: 50%;
+  margin-right: 5%;
+  font-size: 25px;
+  color: $hp-color;
 }
 .shoppingCart {
+  text-align: right;
+  margin: auto 2%;
 }

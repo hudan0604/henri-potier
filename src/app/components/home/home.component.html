@@ -1,21 +1,24 @@
-<div class="fullPage">
-  <div class="booksDiv">
-    <h1>All HP books</h1>
-    <!-- Div of each HP book -->
-    <div class="bookStyle" *ngFor="let book of books; index as i">
-      <!-- Book cover to the left of its properties -->
-      <img class="h100" src="{{ book.cover }}" />
-      <!-- Book properties -->
-      <div id="bookParams">
-        <!-- Book's title -->
-        <div id="bookTitle">{{ book.title }}</div>
-        <!-- Book's synopsis -->
-        <div id="bookSynopsis">{{ book.synopsis }}...</div>
-        <div>
-          <span class="price">{{ book.price }} €</span>
-          <!-- Buy the book -->
-          <span class="cart"><i class="fas fa-shopping-cart"></i></span>
-        </div>
+<div class="booksDiv">
+  <h1>All HP books</h1>
+  <!-- Div of each HP book -->
+  <div class="bookStyle" *ngFor="let book of books; index as i">
+    <!-- Book cover to the left of its properties -->
+    <img class="h100" src="{{ book.cover }}" />
+    <!-- Book properties -->
+    <div id="bookParams">
+      <!-- Book's title -->
+      <div id="bookTitle">{{ book.title }}</div>
+      <!-- Book's synopsis -->
+      <div id="bookSynopsis">{{ book.synopsis }}...</div>
+      <div id="bookPriceAndCart">
+        <span class="price">{{ book.price }} €</span>
+        <!-- Buy the book -->
+        <span class="cart"
+          ><i
+            (click)="addToCart(book)"
+            class="fas fa-shopping-cart homeShoppingCart"
+          ></i
+        ></span>
       </div>
     </div>
   </div>
