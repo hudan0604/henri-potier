@@ -1,8 +1,7 @@
 @import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 
-html,
 body {
-  height: 100%;
+  background: #d7d8e20a !important;
 }
 .w10 {
   width: 10%;
@@ -23,9 +22,14 @@ body {
 .pointer {
   cursor: pointer;
 }
-$hp-color: rgb(88, 39, 153);
+$hp-color: rgb(11, 3, 20);
 nav {
-  background: $hp-color;
+  background-image: linear-gradient(
+    to right,
+    #051937,
+    rgb(73, 69, 69),
+    #051937
+  );
   color: white;
   font-family: "hp";
   position: fixed;
@@ -42,8 +46,9 @@ nav {
   flex-direction: column;
 }
 .fullPage {
-  height: 100%;
+  min-height: 100%;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .center {
@@ -91,9 +96,9 @@ $bookBackground: lightgrey;
   height: 75%;
   text-align: justify;
   text-overflow: ellipsis;
-  background: #e8e8f378;
+  background: #c1c1e878;
   margin-bottom: 2%;
-  border: 1px solid #b5acac;
+  border: 1px solid #e4b8b8de;
   padding: 8px 15px;
 }
 #bookTitle {

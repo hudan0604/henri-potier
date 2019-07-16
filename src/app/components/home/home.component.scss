@@ -8,6 +8,7 @@ body {
   min-height: 100%;
   width: 100%;
   margin: 0;
+  background: #c0c2d659 !important;
 }
 
 #bookPriceAndCart {
@@ -15,7 +16,7 @@ body {
   background: #dcddec;
   height: 15%;
   align-items: center;
-  border: 1px solid #b5acac;
+  border: 1px solid #e4b8b8de;
 }
 
 .homeShoppingCart {
@@ -23,5 +24,6 @@ body {
 }
 .mat-card {
   box-shadow: none !important;
+  background: none !important;
   margin: 13% !important;
 }

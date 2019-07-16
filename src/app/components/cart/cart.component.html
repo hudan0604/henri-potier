@@ -38,7 +38,7 @@
 
       <!-- If only one book in cart  -->
       <div *ngIf="booksInCart.length === 1">
-        Total price : {{ priceOfTheOnlyBook }} €
+        Prix total : {{ priceOfTheOnlyBook }} €
       </div>
       <!-- If more than one book in cart  -->
       <div class="w50" *ngIf="booksInCart.length > 1 && !loadStatus">
