@@ -1,12 +1,11 @@
 <nav>
-  <div class="w50">
-    <h3 id="title" routerLink="">Henri Potier</h3>
-  </div>
+  <h3 id="title" class="w50" routerLink="">Henri Potier</h3>
+
   <div class="shoppingCart w50">
     <!-- Go to Cart Component -->
     <mat-icon
       routerLink="/cart"
-      class="material-icons"
+      class="material-icons pointer"
       matBadge="{{ getBooksInCart() }}"
       matBadgeColor="warn"
     >

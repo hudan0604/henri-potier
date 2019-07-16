@@ -1,5 +1,23 @@
 <div class="booksDiv">
   <h1>All HP books</h1>
+  <mat-card *ngIf="loadStatus">
+    <mat-progress-spinner
+      style="display: flex; "
+      color="primary"
+      mode="indeterminate"
+    >
+    </mat-progress-spinner>
+  </mat-card>
+  <iframe
+    *ngIf="isLoading"
+    src="https://giphy.com/embed/o5HKScC1PflLO"
+    width="480"
+    height="269"
+    frameBorder="0"
+    class="giphy-embed"
+    allowFullScreen
+  ></iframe>
+  <p><a href="https://giphy.com/gifs/o5HKScC1PflLO"></a></p>
   <!-- Div of each HP book -->
   <div class="bookStyle" *ngFor="let book of books; index as i">
     <!-- Book cover to the left of its properties -->
@@ -16,7 +34,7 @@
         <span class="cart"
           ><i
             (click)="addToCart(book)"
-            class="fas fa-shopping-cart homeShoppingCart"
+            class="fas fa-shopping-cart homeShoppingCart pointer"
           ></i
         ></span>
       </div>

@@ -27,6 +27,7 @@
   font-size: 23px;
   color: #9786ad;
 }
+
 .h33 {
   height: 33%;
 }
@@ -42,4 +43,23 @@
   flex-direction: column;
   padding: 10px 20px;
   height: 20%;
+}
+#promotionDiv {
+  background: #c8c6d2;
+  width: 60%;
+  min-height: 100px;
+}
+#oldPrice {
+  font-size: 25px;
+  text-decoration: line-through;
+  text-align: center;
+}
+#priceAfterBestOffer {
+  font-size: 37px;
+  width: 60%;
+  margin-left: 5%;
+}
+.mat-card {
+  box-shadow: none !important;
+  background: none !important;
 }

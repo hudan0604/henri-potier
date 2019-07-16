@@ -1,5 +1,5 @@
 <div class="fullPage">
-  <div *ngIf="booksInCart.length === 0" id="emptyCart">
+  <div *ngIf="booksInCart.length == 0" id="emptyCart">
     <h1>OOOoopss...</h1>
     <p>Votre panier est vide !</p>
     <p>
@@ -7,8 +7,8 @@
       magique d'obtenir un des livres HP !
     </p>
   </div>
-  <div class="cartDiv">
-    <h1 id="monPanier" *ngIf="booksInCart.length > 0">Mon panier</h1>
+  <div class="cartDiv" *ngIf="booksInCart.length > 0">
+    <h1 id="monPanier">Mon panier</h1>
     <div id="bookAndDeleteIcon" *ngFor="let book of booksInCart; index as i">
       <div id="bookInCart">
         <!-- book cover -->
@@ -26,12 +26,34 @@
       </div>
       <div class="center w10">
         <!-- delete icon -->
-        <i (click)="deleteBookFromcart(i)" class="fas fa-trash deleteIcon"></i>
+        <i
+          (click)="deleteBookFromcart(i)"
+          class="fas fa-trash deleteIcon pointer"
+        ></i>
       </div>
     </div>
-    <!-- DIV for the total price after promotions  -->
+    <!-- DIV for total price after offers  -->
     <div id="promotionDiv" class="center">
-      toto
+      <!-- appears when all the prices are calculated  -->
+
+      <!-- If only one book in cart  -->
+      <div *ngIf="booksInCart.length === 1">
+        Total price : {{ priceOfTheOnlyBook }} €
+      </div>
+      <!-- If more than one book in cart  -->
+      <div class="w50" *ngIf="booksInCart.length > 1 && !loadStatus">
+        <div id="oldPrice">{{ oldPrice }} €</div>
+        <!-- Price after application of the best offer -->
+        <div class="dFlex">
+          <div class="dFlex center w40">Meilleure offre :</div>
+          <div id="priceAfterBestOffer">{{ priceAfterBestOffer }} €</div>
+        </div>
+      </div>
+
+      <mat-card *ngIf="loadStatus">
+        <mat-progress-spinner color="primary" mode="indeterminate">
+        </mat-progress-spinner>
+      </mat-card>
     </div>
   </div>
 </div>

@@ -1,11 +1,13 @@
 import {
   MatBadgeModule,
   MatButtonModule,
+  MatCardModule,
   MatCheckboxModule,
   MatDatepickerModule,
   MatIconModule,
   MatInputModule,
   MatNativeDateModule,
+  MatProgressSpinnerModule,
   MatRadioModule,
   MatTabsModule,
   MatToolbarModule
@@ -14,12 +16,12 @@ import {
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { BrowserModule } from "@angular/platform-browser";
+import { CartComponent } from "./components/cart/cart.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { HomeComponent } from "./components/home/home.component";
 import { HttpClientModule } from "@angular/common/http";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { NgModule } from "@angular/core";
-import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent, HomeComponent, CartComponent],
@@ -37,7 +39,9 @@ import { CartComponent } from './components/cart/cart.component';
     MatCheckboxModule,
     MatRadioModule,
     MatIconModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatProgressSpinnerModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

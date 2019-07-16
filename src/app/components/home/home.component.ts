@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 
-import { BehaviorSubject } from "rxjs";
 import { BooksService } from "src/services/books/books.service";
 import { StorageService } from "src/services/storage/storage.service";
 
@@ -11,6 +10,8 @@ import { StorageService } from "src/services/storage/storage.service";
 })
 export class HomeComponent implements OnInit {
   books: Object;
+
+  loadStatus: boolean;
 
   constructor(
     private booksService: BooksService,
@@ -27,9 +28,13 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.booksService.getBooks().subscribe(e => {
-      this.books = e;
-      console.log(e);
-    });
+    this.loadStatus = true;
+    this.booksService
+      .getBooks()
+
+      .subscribe(e => {
+        this.books = e;
+        this.loadStatus = false;
+      });
   }
 }

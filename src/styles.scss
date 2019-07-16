@@ -10,12 +10,16 @@ body {
 .w20 {
   width: 20%;
 }
+.w40 {
+  width: 40%;
+}
 .w50 {
   width: 50%;
 }
 .w100 {
   width: 100%;
 }
+
 .pointer {
   cursor: pointer;
 }
@@ -28,6 +32,8 @@ nav {
   width: 100%;
   top: 0;
   display: flex !important;
+  height: 6%;
+  align-items: center;
 }
 @mixin center {
   display: flex;
@@ -48,6 +54,9 @@ nav {
   @include center;
 
   margin-top: 8%;
+}
+.dFlex {
+  display: flex;
 }
 .booksDiv {
   display: flex;
