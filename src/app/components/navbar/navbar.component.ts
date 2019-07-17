@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(private storageService: StorageService) {}
   getNumberOfBooksInCart(): number {
-    return this.storageService.getNumberOfBooksInCart().length;
+    return this.storageService.getBooksInCart().length;
   }
 
   ngOnInit() {}

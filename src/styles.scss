@@ -81,7 +81,7 @@ $bookBackground: lightgrey;
   width: 45%;
   margin-right: 50px;
   float: left;
-  margin-bottom: 20px;
+  margin-bottom: 4%;
   display: flex;
 }
 @mixin h100 {
@@ -97,14 +97,13 @@ $bookBackground: lightgrey;
   padding: 0 26px 0px 26px;
 }
 #bookSynopsis {
-  overflow: hidden;
   height: 75%;
   text-align: justify;
-  text-overflow: ellipsis;
   background: #c1c1e878;
   margin-bottom: 2%;
   border: 1px solid #e4b8b8de;
   padding: 8px 15px;
+  overflow: scroll;
 }
 #bookTitle {
   font-weight: 700;

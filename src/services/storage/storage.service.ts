@@ -1,7 +1,6 @@
 import { API_ENDPOINT } from "../../settings/appsettings";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -17,7 +16,7 @@ export class StorageService {
    * then add the whole array to local storage
    */
   addToCart(book): void {
-    this.booksInCart = this.getNumberOfBooksInCart();
+    this.booksInCart = this.getBooksInCart();
     this.booksInCart.push(book);
     localStorage.setItem("booksInCart", JSON.stringify(this.booksInCart));
   }
@@ -25,15 +24,15 @@ export class StorageService {
    * Delete book from cart
    */
   deleteBook(index): void {
-    this.booksInCart = this.getNumberOfBooksInCart().filter(
-      e => e.title !== this.getNumberOfBooksInCart()[index].title
+    this.booksInCart = this.getBooksInCart().filter(
+      e => e.title !== this.getBooksInCart()[index].title
     );
     localStorage.setItem("booksInCart", JSON.stringify(this.booksInCart));
   }
   /*
    * Returns the books in local storage
    */
-  getNumberOfBooksInCart(): any[] {
+  getBooksInCart(): any[] {
     return JSON.parse(localStorage.getItem("booksInCart"));
   }
   /*
@@ -43,7 +42,7 @@ export class StorageService {
    */
   getPromotions(): any {
     this.isbns = [];
-    let books = this.getNumberOfBooksInCart();
+    let books = this.getBooksInCart();
     for (let book of books) {
       this.isbns.push(book.isbn);
     }

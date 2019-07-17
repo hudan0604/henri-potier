@@ -19,37 +19,53 @@ export class CartComponent implements OnInit, OnDestroy {
   priceAfterSlice: number;
   priceAfterBestOffer: number;
   loadStatus: boolean;
+  numberOfBooks: any;
 
   constructor(private storageService: StorageService) {}
+
+  /*
+   * delete a book from cart
+   */
   deleteBookFromcart(i): void {
     this.storageService.deleteBook(i);
     this.caclulateTotalPrice();
 
-    if (this.getNumberOfBooksInCart() > 1)
+    /*
+     * if there is only one product in cart
+     * then set the books array to empty array
+     */
+    if (this.getNumberOfBooksInCart() === 1) {
+      this.priceOfTheOnlyBook = this.storageService.getBooksInCart()[0].price;
+    } else if (this.getNumberOfBooksInCart() > 1)
+      /*
+       * else if there is more than one product in cart
+       * then make http request to get the promotions
+       */
       this.storageService.getPromotions().subscribe(e => {
         this.offers = e;
       });
-    else if (this.getNumberOfBooksInCart() === 1) {
-      this.priceOfTheOnlyBook = this.storageService.getNumberOfBooksInCart()[0].price;
-    }
+    // calculate new price after promotions
     this.calculatePriceAfterOffers();
-    this.booksInCart = this.storageService.getNumberOfBooksInCart();
+    // visualize the books in storage after book deletion
+    this.booksInCart = this.storageService.getBooksInCart();
   }
 
   caclulateTotalPrice() {
     let price = 0;
-    this.booksInCart = this.storageService.getNumberOfBooksInCart();
+    this.booksInCart = this.storageService.getBooksInCart();
     for (let book of this.booksInCart) {
       price += book.price;
     }
     this.totalPrice = price;
   }
-  calculatePriceAfterOffers() {
-    this.booksInCart = this.storageService.getNumberOfBooksInCart();
 
+  calculatePriceAfterOffers() {
+    this.booksInCart = this.storageService.getBooksInCart();
+    if (this.getNumberOfBooksInCart() === 1)
+      this.priceOfTheOnlyBook = this.booksInCart[0].price;
     if (this.booksInCart.length > 1) {
       this.loadStatus = true;
-      this.priceOfTheOnlyBook = this.booksInCart[0].price;
+
       this.storageService.getPromotions().subscribe(e => {
         this.offers = e;
         this.caclulateTotalPrice();
@@ -69,13 +85,17 @@ export class CartComponent implements OnInit, OnDestroy {
               Math.floor(this.totalPrice / offer.sliceValue) * offer.value;
           }
         }
-
+        /*
+         * if the total price is lower than the slice value
+         * then calculate minimum of afterMinus and afterPercentage
+         */
         this.priceAfterSlice === undefined
           ? (this.priceAfterBestOffer = Math.min(
               this.priceAfterMinus,
               this.priceAfterPercentage
             ))
-          : (this.priceAfterBestOffer = Math.min(
+          : // else calculate the minimum price between all offers
+            (this.priceAfterBestOffer = Math.min(
               this.priceAfterMinus,
               this.priceAfterPercentage,
               this.priceAfterSlice
@@ -85,10 +105,11 @@ export class CartComponent implements OnInit, OnDestroy {
     }
   }
   getNumberOfBooksInCart(): number {
-    return this.storageService.getNumberOfBooksInCart().length;
+    return this.storageService.getBooksInCart().length;
   }
   ngOnInit() {
     this.calculatePriceAfterOffers();
+    console.log(this.getNumberOfBooksInCart());
   }
   ngOnDestroy() {
     this.storageService.resetIsbnsToZero();

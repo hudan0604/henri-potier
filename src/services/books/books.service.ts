@@ -9,7 +9,7 @@ import { Observable } from "rxjs";
 export class BooksService {
   constructor(private http: HttpClient) {}
 
-  public getBooks(): Observable<Object> {
+  public getBooks(): any {
     return this.http.get("http://" + API_ENDPOINT);
   }
 }

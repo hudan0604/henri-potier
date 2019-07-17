@@ -1,23 +1,18 @@
 <div class="booksDiv">
   <h1>All HP books</h1>
+
+  <input
+    id="searchBar"
+    (keyup)="search($event.target.value)"
+    type="text"
+    class="form-control"
+    placeholder="Recherche ..."
+  />
   <mat-card *ngIf="loadStatus">
-    <mat-progress-spinner
-      style="display: flex; "
-      color="primary"
-      mode="indeterminate"
-    >
+    <mat-progress-spinner color="primary" mode="indeterminate">
     </mat-progress-spinner>
   </mat-card>
-  <iframe
-    *ngIf="isLoading"
-    src="https://giphy.com/embed/o5HKScC1PflLO"
-    width="480"
-    height="269"
-    frameBorder="0"
-    class="giphy-embed"
-    allowFullScreen
-  ></iframe>
-  <p><a href="https://giphy.com/gifs/o5HKScC1PflLO"></a></p>
+
   <!-- Div of each HP book -->
   <div class="bookStyle" *ngFor="let book of books; index as i">
     <!-- Book cover to the left of its properties -->
@@ -27,7 +22,9 @@
       <!-- Book's title -->
       <div id="bookTitle">{{ book.title }}</div>
       <!-- Book's synopsis -->
-      <div id="bookSynopsis">{{ book.synopsis }}...</div>
+      <div id="bookSynopsis">
+        <p *ngFor="let paragraph of book.synopsis">{{ paragraph }}</p>
+      </div>
       <div id="bookPriceAndCart">
         <span class="price">{{ book.price }} €</span>
         <!-- Buy the book -->
