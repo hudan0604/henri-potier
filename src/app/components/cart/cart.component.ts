@@ -25,27 +25,27 @@ export class CartComponent implements OnInit, OnDestroy {
     this.storageService.deleteBook(i);
     this.caclulateTotalPrice();
 
-    if (this.getBooksInCart() > 1)
+    if (this.getNumberOfBooksInCart() > 1)
       this.storageService.getPromotions().subscribe(e => {
         this.offers = e;
       });
-    else if (this.getBooksInCart() === 1) {
-      this.priceOfTheOnlyBook = this.storageService.getBooksInCart()[0].price;
+    else if (this.getNumberOfBooksInCart() === 1) {
+      this.priceOfTheOnlyBook = this.storageService.getNumberOfBooksInCart()[0].price;
     }
     this.calculatePriceAfterOffers();
-    this.booksInCart = this.storageService.getBooksInCart();
+    this.booksInCart = this.storageService.getNumberOfBooksInCart();
   }
 
   caclulateTotalPrice() {
     let price = 0;
-    this.booksInCart = this.storageService.getBooksInCart();
+    this.booksInCart = this.storageService.getNumberOfBooksInCart();
     for (let book of this.booksInCart) {
       price += book.price;
     }
     this.totalPrice = price;
   }
   calculatePriceAfterOffers() {
-    this.booksInCart = this.storageService.getBooksInCart();
+    this.booksInCart = this.storageService.getNumberOfBooksInCart();
 
     if (this.booksInCart.length > 1) {
       this.loadStatus = true;
@@ -84,10 +84,9 @@ export class CartComponent implements OnInit, OnDestroy {
       });
     }
   }
-  getBooksInCart(): number {
-    return this.storageService.getBooksInCart().length;
+  getNumberOfBooksInCart(): number {
+    return this.storageService.getNumberOfBooksInCart().length;
   }
-
   ngOnInit() {
     this.calculatePriceAfterOffers();
   }

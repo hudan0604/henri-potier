@@ -12,8 +12,8 @@ export class NavbarComponent implements OnInit {
   books: number;
 
   constructor(private storageService: StorageService) {}
-  getBooksInCart(): number {
-    return this.storageService.getBooksInCart().length;
+  getNumberOfBooksInCart(): number {
+    return this.storageService.getNumberOfBooksInCart().length;
   }
 
   ngOnInit() {}
