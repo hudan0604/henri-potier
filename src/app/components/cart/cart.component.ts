@@ -11,7 +11,7 @@ export class CartComponent implements OnInit, OnDestroy {
   booksInCart = [];
   offers;
   priceOfTheOnlyBook: number;
-  oldPrice = 0;
+  totalPrice = 0;
 
   totalPriceCalc: any;
   priceAfterPercentage: number;
@@ -23,43 +23,50 @@ export class CartComponent implements OnInit, OnDestroy {
   constructor(private storageService: StorageService) {}
   deleteBookFromcart(i): void {
     this.storageService.deleteBook(i);
-    this.booksInCart = this.storageService.getBooksInCart();
-    if (this.booksInCart.length > 1)
+    this.caclulateTotalPrice();
+
+    if (this.getBooksInCart() > 1)
       this.storageService.getPromotions().subscribe(e => {
         this.offers = e;
       });
+    else if (this.getBooksInCart() === 1) {
+      this.priceOfTheOnlyBook = this.storageService.getBooksInCart()[0].price;
+    }
+    this.calculatePriceAfterOffers();
+    this.booksInCart = this.storageService.getBooksInCart();
   }
 
   caclulateTotalPrice() {
     let price = 0;
+    this.booksInCart = this.storageService.getBooksInCart();
     for (let book of this.booksInCart) {
       price += book.price;
     }
-    this.oldPrice = price;
+    this.totalPrice = price;
   }
-
-  ngOnInit() {
+  calculatePriceAfterOffers() {
     this.booksInCart = this.storageService.getBooksInCart();
-    this.priceOfTheOnlyBook = this.booksInCart[0].price;
 
     if (this.booksInCart.length > 1) {
       this.loadStatus = true;
+      this.priceOfTheOnlyBook = this.booksInCart[0].price;
       this.storageService.getPromotions().subscribe(e => {
         this.offers = e;
         this.caclulateTotalPrice();
         // calculate price after offer for each offer
         for (let offer of this.offers.offers) {
           if (offer.type === "percentage") {
-            this.priceAfterPercentage = this.oldPrice * (1 - offer.value / 100);
+            this.priceAfterPercentage =
+              this.totalPrice * (1 - offer.value / 100);
           } else if (offer.type === "minus") {
-            this.priceAfterMinus = this.oldPrice - offer.value;
+            this.priceAfterMinus = this.totalPrice - offer.value;
           } else if (
             offer.type === "slice" &&
-            this.oldPrice / offer.sliceValue >= 1
+            this.totalPrice / offer.sliceValue >= 1
           ) {
             this.priceAfterSlice =
-              this.oldPrice -
-              Math.floor(this.oldPrice / offer.sliceValue) * offer.value;
+              this.totalPrice -
+              Math.floor(this.totalPrice / offer.sliceValue) * offer.value;
           }
         }
 
@@ -76,6 +83,13 @@ export class CartComponent implements OnInit, OnDestroy {
         this.loadStatus = false;
       });
     }
+  }
+  getBooksInCart(): number {
+    return this.storageService.getBooksInCart().length;
+  }
+
+  ngOnInit() {
+    this.calculatePriceAfterOffers();
   }
   ngOnDestroy() {
     this.storageService.resetIsbnsToZero();

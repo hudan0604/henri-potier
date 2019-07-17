@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit {
    *send book to storage service
    */
   addToCart(book): void {
-    //console.log(book);
     this.storageService.addToCart(book);
   }
 

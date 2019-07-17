@@ -1,5 +1,5 @@
 <div class="fullPage">
-  <div *ngIf="booksInCart.length == 0" id="emptyCart">
+  <div *ngIf="getBooksInCart() === 0" id="emptyCart">
     <h1>OOOoopss...</h1>
     <p>Votre panier est vide !</p>
     <p>
@@ -42,7 +42,7 @@
       </div>
       <!-- If more than one book in cart  -->
       <div class="w50" *ngIf="booksInCart.length > 1 && !loadStatus">
-        <div id="oldPrice">{{ oldPrice }} €</div>
+        <div id="oldPrice">{{ totalPrice }} €</div>
         <!-- Price after application of the best offer -->
         <div class="dFlex">
           <div class="dFlex center w40">Meilleure offre :</div>
