@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
    * and put spinner to make user
    * wait during the request
    */
-  getAllBooks() {
+  getAllBooks(): void {
     this.loadStatus = true;
     this.booksService.getBooks().subscribe(e => {
       this.books = e;
@@ -37,13 +37,25 @@ export class HomeComponent implements OnInit {
   addToCart(book): void {
     this.storageService.addToCart(book);
   }
+
+  /*
+   * Search function
+   * Enables the user to filter the books
+   * when typing a string search
+   */
   search(value) {
     let searchValue = value.toLowerCase();
 
     this.books = this.books.filter(e => {
-      for (let paragraph of e.synopsis) {
-        return paragraph.toLowerCase().includes(searchValue);
-      }
+      console.log(e.title.toLowerCase().includes(searchValue));
+      //e.synopsis[0] == e.synopsis[0].toLowerCase().includes(searchValue) ||
+      return (
+        e.title.toLowerCase().includes(searchValue) ||
+        e.synopsis
+          .toString()
+          .toLowerCase()
+          .includes(searchValue)
+      );
     });
 
     /*
