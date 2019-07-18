@@ -47,8 +47,6 @@ export class HomeComponent implements OnInit {
     let searchValue = value.toLowerCase();
 
     this.books = this.books.filter(e => {
-      console.log(e.title.toLowerCase().includes(searchValue));
-      //e.synopsis[0] == e.synopsis[0].toLowerCase().includes(searchValue) ||
       return (
         e.title.toLowerCase().includes(searchValue) ||
         e.synopsis
