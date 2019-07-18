@@ -69,6 +69,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    //get data
     this.getAllBooks();
   }
 }
