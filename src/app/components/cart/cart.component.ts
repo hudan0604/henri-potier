@@ -44,12 +44,11 @@ export class CartComponent implements OnInit, OnDestroy {
       this.storageService.getPromotions().subscribe(e => {
         this.offers = e;
       });
-    // calculate new price after promotions
     this.calculatePriceAfterOffers();
     // visualize the books in storage after book deletion
     this.booksInCart = this.storageService.getBooksInCart();
   }
-
+  // calculate new price after promotions
   caclulateTotalPrice() {
     let price = 0;
     this.booksInCart = this.storageService.getBooksInCart();

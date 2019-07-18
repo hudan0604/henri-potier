@@ -1,16 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 
-import { CartComponent } from './cart.component';
+import { CartComponent } from "./cart.component";
+import { StorageService } from "src/services/storage/storage.service";
 
-describe('CartComponent', () => {
+describe("CartComponent", () => {
   let component: CartComponent;
+  let storageService: StorageService;
   let fixture: ComponentFixture<CartComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CartComponent ]
-    })
-    .compileComponents();
+      declarations: [CartComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +20,12 @@ describe('CartComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
+  });
+  it("should get books", () => {
+    spyOn(storageService, "getBooksInCart");
+    component.ngOnInit();
+    expect(storageService.getBooksInCart).toHaveBeenCalled();
   });
 });

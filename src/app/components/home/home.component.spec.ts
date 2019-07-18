@@ -1,10 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
+import { BooksService } from 'src/services/books/books.service';
+import { of, throwError } from 'rxjs';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
+  let booksService: BooksService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -22,4 +25,10 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should get books number', () => {
+    spyOn(booksService, 'getBooks').and.returnValue(of({}));
+    component.ngOnInit();
+    expect(booksService.getBooks).toHaveBeenCalled();
+  });
+
 });
